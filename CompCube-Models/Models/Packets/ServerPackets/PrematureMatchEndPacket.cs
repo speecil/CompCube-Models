@@ -1,0 +1,17 @@
+﻿using Newtonsoft.Json;
+
+namespace CompCube_Models.Models.Packets.ServerPackets;
+
+public class PrematureMatchEndPacket : ServerPacket
+{
+    public override ServerPacketTypes PacketType => ServerPacketTypes.PrematureMatchEnd;
+    
+    [JsonProperty("reason")]
+    public readonly string Reason;
+
+    [JsonConstructor]
+    public PrematureMatchEndPacket(string reason)
+    {
+        Reason = reason;
+    }
+}
