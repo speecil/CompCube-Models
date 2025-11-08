@@ -1,5 +1,4 @@
-﻿using LoungeSaber_Server.Divisions;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace CompCube_Models.Models.ClientData;
 
@@ -15,7 +14,7 @@ public class DivisionInfo
         Glow = glow;
     }
 
-    public DivisionInfo(DivisionManager.DivisionName divisionName, int subDivision, string colorCode, bool glow)
+    public DivisionInfo(DivisionName divisionName, int subDivision, string colorCode, bool glow)
     {
         Division = divisionName.ToString();
         SubDivision = subDivision;
@@ -27,4 +26,17 @@ public class DivisionInfo
     [JsonProperty("subDivision")] public int SubDivision { get; private set; }
     [JsonProperty("color")] public string Color { get; private set; }
     [JsonProperty("glow")] public bool Glow { get; private set; }
+
+    public enum DivisionName
+    {
+        Iron,
+        Bronze,
+        Silver,
+        Gold,
+        Platinum,
+        Diamond,
+        Iridescent,
+        Luminal,
+        Superluminal
+    }
 }

@@ -9,7 +9,7 @@ namespace CompCube_Models.Models.Packets.ServerPackets
         VotingMap mapSelected,
         int transitionToGameWait,
         int startingWait,
-        UserInfo opponent) : ServerPacket
+        CompCube_Models.Models.ClientData.UserInfo opponent) : ServerPacket
     {
         public override ServerPacketTypes PacketType => ServerPacketTypes.MatchStarted;
 
@@ -23,6 +23,6 @@ namespace CompCube_Models.Models.Packets.ServerPackets
         public readonly int StartingWait = startingWait;
 
         [JsonProperty("opponent")] 
-        public readonly UserInfo Opponent = opponent;
+        public readonly CompCube_Models.Models.ClientData.UserInfo Opponent = opponent;
     }
 }

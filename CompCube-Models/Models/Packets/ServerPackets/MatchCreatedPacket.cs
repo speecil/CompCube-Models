@@ -12,10 +12,10 @@ public class MatchCreatedPacket : ServerPacket
     public readonly VotingMap[] Maps;
     
     [JsonProperty("opponent")]
-    public readonly UserInfo Opponent;
+    public readonly CompCube_Models.Models.ClientData.UserInfo Opponent;
 
     [JsonConstructor]
-    public MatchCreatedPacket(VotingMap[] maps, UserInfo opponent)
+    public MatchCreatedPacket(VotingMap[] maps, CompCube_Models.Models.ClientData.UserInfo opponent)
     {
         Maps = maps;
         Opponent = opponent;
