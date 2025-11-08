@@ -7,7 +7,7 @@ public abstract class Packet
 {
     public byte[] SerializeToBytes() => Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(this));
 
-    public T? Deserialize<T>(string data)
+    public static T? Deserialize<T>(string data)
     {
         return JsonConvert.DeserializeObject<T>(data);
     }
