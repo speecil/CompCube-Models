@@ -2,4 +2,8 @@
 
 namespace CompCube_Models.Models.Match;
 
-public record MatchScore(UserInfo User, Score? Score);
+public class MatchScore(UserInfo user, Score? score)
+{
+    public readonly UserInfo User = user;
+    public readonly Score? Score = score;
+}
