@@ -3,7 +3,7 @@
 namespace CompCube_Models.Models.Events;
 
 [method: Newtonsoft.Json.JsonConstructor]
-public class EventData(string eventName, string displayName, string description)
+public class EventData(string eventName, string displayName, string description, bool availableToJoin)
 {
     [JsonProperty(PropertyName = "eventName")]
     public string EventName => eventName;
@@ -13,4 +13,7 @@ public class EventData(string eventName, string displayName, string description)
     
     [JsonProperty(PropertyName = "description")]
     public string Description => description;
+    
+    [JsonProperty(PropertyName = "availableToJoin")]
+    public bool AvailableToJoin { get; set; } = availableToJoin;
 }
