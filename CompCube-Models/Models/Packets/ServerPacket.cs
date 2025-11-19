@@ -18,6 +18,7 @@ public abstract class ServerPacket : Packet
         EventStarted,
         EventClosed,
         EventMapSelected,
-        EventMatchStarted
+        EventMatchStarted,
+        EventScoresUpdated
     }
 }
