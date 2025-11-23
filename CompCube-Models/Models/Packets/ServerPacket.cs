@@ -36,32 +36,20 @@ public abstract class ServerPacket : Packet
         if (!Enum.TryParse<ServerPacket.ServerPacketTypes>(packetTypeJToken.ToObject<string>(), out var userPacketType))
             throw new Exception("Could not deserialize packet type!");
 
-        switch (userPacketType)
+        return userPacketType switch
         {
-            case ServerPacketTypes.JoinResponse:
-                return JsonConvert.DeserializeObject<JoinResponsePacket>(data);
-            case ServerPacketTypes.MatchCreated:
-                return JsonConvert.DeserializeObject<MatchCreatedPacket>(data);
-            case ServerPacketTypes.OpponentVoted:
-                return JsonConvert.DeserializeObject<OpponentVotedPacket>(data);
-            case ServerPacketTypes.MatchStarted:
-                return JsonConvert.DeserializeObject<MatchStartedPacket>(data);
-            case ServerPacketTypes.MatchResults:
-                return JsonConvert.DeserializeObject<MatchResultsPacket>(data);
-            case ServerPacketTypes.PrematureMatchEnd:
-                return JsonConvert.DeserializeObject<PrematureMatchEndPacket>(data);
-            case ServerPacketTypes.EventScoresUpdated:
-                return JsonConvert.DeserializeObject<EventScoresUpdated>(data);
-            case ServerPacketTypes.EventClosed:
-                return JsonConvert.DeserializeObject<EventClosedPacket>(data);
-            case ServerPacketTypes.EventMapSelected:
-                return JsonConvert.DeserializeObject<EventMapSelected>(data);
-            case ServerPacketTypes.EventMatchStarted:
-                return JsonConvert.DeserializeObject<EventMatchStartedPacket>(data);
-            case ServerPacketTypes.EventStarted:
-                return JsonConvert.DeserializeObject<EventStartedPacket>(data);
-            default:
-                throw new Exception("Could not get packet type!");
-        }
+            ServerPacketTypes.JoinResponse => JsonConvert.DeserializeObject<JoinResponsePacket>(data),
+            ServerPacketTypes.MatchCreated => JsonConvert.DeserializeObject<MatchCreatedPacket>(data),
+            ServerPacketTypes.OpponentVoted => JsonConvert.DeserializeObject<OpponentVotedPacket>(data),
+            ServerPacketTypes.MatchStarted => JsonConvert.DeserializeObject<MatchStartedPacket>(data),
+            ServerPacketTypes.MatchResults => JsonConvert.DeserializeObject<MatchResultsPacket>(data),
+            ServerPacketTypes.PrematureMatchEnd => JsonConvert.DeserializeObject<PrematureMatchEndPacket>(data),
+            ServerPacketTypes.EventScoresUpdated => JsonConvert.DeserializeObject<EventScoresUpdated>(data),
+            ServerPacketTypes.EventClosed => JsonConvert.DeserializeObject<EventClosedPacket>(data),
+            ServerPacketTypes.EventMapSelected => JsonConvert.DeserializeObject<EventMapSelected>(data),
+            ServerPacketTypes.EventMatchStarted => JsonConvert.DeserializeObject<EventMatchStartedPacket>(data),
+            ServerPacketTypes.EventStarted => JsonConvert.DeserializeObject<EventStartedPacket>(data),
+            _ => throw new Exception("Could not get packet type!")
+        };
     }
 }
