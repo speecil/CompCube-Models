@@ -19,6 +19,7 @@ public abstract class ServerPacket : Packet
         MatchStarted,
         MatchResults,
         PrematureMatchEnd,
+        UserDisconnected,
         EventStarted,
         EventClosed,
         EventMapSelected,
@@ -36,20 +37,21 @@ public abstract class ServerPacket : Packet
         if (!Enum.TryParse<ServerPacket.ServerPacketTypes>(packetTypeJToken.ToObject<string>(), out var userPacketType))
             throw new Exception("Could not deserialize packet type!");
 
-        return userPacketType switch
+        return (userPacketType switch
         {
             ServerPacketTypes.JoinResponse => JsonConvert.DeserializeObject<JoinResponsePacket>(data),
             ServerPacketTypes.MatchCreated => JsonConvert.DeserializeObject<MatchCreatedPacket>(data),
-            ServerPacketTypes.OpponentVoted => JsonConvert.DeserializeObject<OpponentVotedPacket>(data),
+            ServerPacketTypes.OpponentVoted => JsonConvert.DeserializeObject<VotePacket>(data),
             ServerPacketTypes.MatchStarted => JsonConvert.DeserializeObject<MatchStartedPacket>(data),
             ServerPacketTypes.MatchResults => JsonConvert.DeserializeObject<MatchResultsPacket>(data),
-            ServerPacketTypes.PrematureMatchEnd => JsonConvert.DeserializeObject<PrematureMatchEndPacket>(data),
+            ServerPacketTypes.UserDisconnected => JsonConvert.DeserializeObject<UserDisconnectedPacket>(data),
             ServerPacketTypes.EventScoresUpdated => JsonConvert.DeserializeObject<EventScoresUpdated>(data),
             ServerPacketTypes.EventClosed => JsonConvert.DeserializeObject<EventClosedPacket>(data),
             ServerPacketTypes.EventMapSelected => JsonConvert.DeserializeObject<EventMapSelected>(data),
             ServerPacketTypes.EventMatchStarted => JsonConvert.DeserializeObject<EventMatchStartedPacket>(data),
             ServerPacketTypes.EventStarted => JsonConvert.DeserializeObject<EventStartedPacket>(data),
+            ServerPacketTypes.PrematureMatchEnd => JsonConvert.DeserializeObject<PrematureMatchEndPacket>(data),
             _ => throw new Exception("Could not get packet type!")
-        };
+        })!;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CompCube_Models.Models.ClientData;
 using CompCube_Models.Models.Map;
+using CompCube_Models.Models.Match;
 using Newtonsoft.Json;
 
 namespace CompCube_Models.Models.Packets.ServerPackets
@@ -9,7 +10,8 @@ namespace CompCube_Models.Models.Packets.ServerPackets
         VotingMap mapSelected,
         int transitionToGameWait,
         int startingWait,
-        CompCube_Models.Models.ClientData.UserInfo opponent) : ServerPacket
+        TeamData redTeamData,
+        TeamData blueTeamData) : ServerPacket
     {
         public override ServerPacketTypes PacketType => ServerPacketTypes.MatchStarted;
 
@@ -22,7 +24,8 @@ namespace CompCube_Models.Models.Packets.ServerPackets
         [JsonProperty("startingTime")]
         public readonly int StartingWait = startingWait;
 
-        [JsonProperty("opponent")] 
-        public readonly CompCube_Models.Models.ClientData.UserInfo Opponent = opponent;
+        [JsonProperty("redTeam")] public readonly TeamData RedTeamData = redTeamData;
+
+        [JsonProperty("blueTeam")] public readonly TeamData BlueTeamData = blueTeamData;
     }
 }
