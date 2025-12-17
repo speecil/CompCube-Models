@@ -2,23 +2,28 @@
 
 namespace CompCube_Models.Models.Map;
 
-public class VotingMap
+[method: JsonConstructor]
+public class VotingMap(
+    string hash,
+    VotingMap.DifficultyType difficulty,
+    VotingMap.Category category,
+    string categoryLabel)
 {
     [JsonProperty("hash")]
-    public readonly string Hash;
+    public readonly string Hash = hash;
 
     [JsonProperty("difficulty")]
-    public readonly DifficultyType Difficulty;
+    public readonly DifficultyType Difficulty = difficulty;
+
+    [JsonProperty("categoryLabel")] 
+    public readonly string CategoryLabel = categoryLabel;
 
     [JsonProperty("category")] 
-    public readonly string Category;
+    public readonly Category MapCategory = category;
 
-    [JsonConstructor]
-    public VotingMap(string hash, DifficultyType difficulty, string category)
+    public enum Category
     {
-        Hash = hash;
-        Difficulty = difficulty;
-        Category = category;
+        
     }
     
     public enum DifficultyType
