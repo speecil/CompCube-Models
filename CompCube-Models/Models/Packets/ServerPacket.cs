@@ -36,7 +36,7 @@ public abstract class ServerPacket : Packet
         if (!jobj.TryGetValue("type", out var packetTypeJToken))
             throw new Exception("Could not deserialize packet!");
         
-        if (!Enum.TryParse<ServerPacket.ServerPacketTypes>(packetTypeJToken.ToObject<string>(), out var userPacketType))
+        if (!Enum.TryParse<ServerPacketTypes>(packetTypeJToken.ToObject<string>(), out var userPacketType))
             throw new Exception("Could not deserialize packet type!");
 
         return (userPacketType switch
