@@ -16,7 +16,7 @@ public class UserInfo(string username, string userId, int mmr, DivisionInfo divi
     public string ProfilePictureLink { get; private set; } = "https://cdn.scoresaber.com/avatars/" + (userId.Length == 17 ? $"{userId}.jpg" : "oculus.png");
 
     [JsonProperty("mmr")]
-    public int Mmr { get; private set; }= mmr;
+    public int Mmr { get; private set; } = mmr;
 
     [JsonProperty("badge")]
     public Badge? Badge { get; private set; }= badge;
